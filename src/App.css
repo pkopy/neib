@@ -34,3 +34,7 @@
   position: absolute;
   right: 0px;
 }
+button {
+  position: absolute;
+  left: 0;
+}

@@ -1,7 +1,7 @@
-// export const api = "https://maps.googleapis.com/maps/api/js"
+// const api = "https://maps.googleapis.com/maps/api/js"
 
 // export const get = () => 
-//     fetch('api').then(res => res)
+//     fetch('https://maps.googleapis.com/maps/api/js').then(res => res.text())
 
 // export const test = (map) => {
     
@@ -12,7 +12,7 @@
 //         });
 //     }
 // }
-//     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxMhKai2omF-2VhJWnO1VCaoz2n8fLMrs&v=3&callback=initMap">
-//     </script>
+    // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxMhKai2omF-2VhJWnO1VCaoz2n8fLMrs&v=3&callback=initMap">
+    // </script>
 
 // }

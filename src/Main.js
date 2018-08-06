@@ -13,9 +13,10 @@ class Main extends Component {
         
         return (
             <div>
-                <div   id="map"></div>
+                <div   id="map" onClick={()=>init()}></div>
                 
-                
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxMhKai2omF-2VhJWnO1VCaoz2n8fLMrs&v=3&callback=initMap">
+                </script>
             </div>
             
         )
