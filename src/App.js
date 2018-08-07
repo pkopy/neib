@@ -30,7 +30,20 @@ class App extends Component {
           this.setState({content:(reg1.exec(myArray[0]))[0]})
           // console.log(reg1.exec(myArray[0]))
       })
+      fetch('https://newsapi.org/v2/top-headlines?country=pl&apiKey=ac6d8147786d47dfa539427ea3f24b65')
+        .then((res) => res.json())
+        .then((data) => console.log(data))
       this.initMap()
+
+      fetch('https://andruxnet-world-cities-v1.p.mashape.com/?query=xx&searchby=city', {
+        headers: {
+          "X-Mashape-Key": "4zypBgqWUjmshNaRKAdqNSAjch6xp1w9HCLjsnNZNalp6qAzJ2",
+          "Accept": "application/json"
+        }
+      }
+      ).then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch(() => console.log('no data'))
      
   }
     
@@ -53,7 +66,7 @@ class App extends Component {
   let marker = new google.maps.Marker({
     position: pawel,
     map: this.map,
-    title:'jjjjjjj'
+    title:'Jedlnia-Letnisko'
   })   
 }
 
@@ -73,6 +86,7 @@ test = () => {
             <div className="weather">
             <div>{this.state.temp} &#176;C</div>
             <img src={this.state.icon} alt="weather`s icon" />
+            <p>Powered by Openweathermap.org</p>
             </div>
             <button onClick={this.test} >Click</button>
         
