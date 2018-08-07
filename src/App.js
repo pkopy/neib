@@ -35,7 +35,7 @@ class App extends Component {
         .then((data) => console.log(data))
       this.initMap()
 
-      fetch('https://andruxnet-world-cities-v1.p.mashape.com/?query=xx&searchby=city', {
+      fetch('https://andruxnet-world-cities-v1.p.mashape.com/?query=radom&searchby=city', {
         headers: {
           "X-Mashape-Key": "4zypBgqWUjmshNaRKAdqNSAjch6xp1w9HCLjsnNZNalp6qAzJ2",
           "Accept": "application/json"
