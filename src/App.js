@@ -15,16 +15,7 @@ class App extends Component {
 
     
       
-      const script = document.createElement("script");
-
-      script.id = 'test'
-      
-      script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDxMhKai2omF-2VhJWnO1VCaoz2n8fLMrs&v=3";
-      script.async = true;
-      
-      document.body.appendChild(script);
-
-      setTimeout(this.initMap, 300)
+      this.initMap()
      
   }
     
@@ -42,7 +33,13 @@ class App extends Component {
   this.map = new google.maps.Map(document.getElementById('map'), {
     center: {lat:51.434571, lng: 21.316791},
     zoom: 14
-  })        
+  })   
+  let pawel =   {lat:51.434571, lng: 21.316791};
+  let marker = new google.maps.Marker({
+    position: pawel,
+    map: this.map,
+    title:'jjjjjjj'
+  })   
 }
 
         
@@ -58,9 +55,9 @@ test = () => {
                 
                 <h1 className="App-title">TEST</h1>
             </header>
+            <div  onCompositionEnd={()=>this.initMap()} id="map"></div>
             <button onClick={this.test} >Click</button>
-        <Main  init={this.initMap}
-        />
+        
       </div>
     );
   }
