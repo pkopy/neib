@@ -8,31 +8,41 @@ class App extends Component {
 
   state={
     init:false,
-    // map:Map.get()
+    map:null
   }
   
   componentDidMount () {
+
     
-      // const script = document.createElement("script");
       
-      // script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDxMhKai2omF-2VhJWnO1VCaoz2n8fLMrs&v=3";
-      // script.async = true;
+      const script = document.createElement("script");
+
+      script.id = 'test'
       
-      // document.body.appendChild(script);
+      script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDxMhKai2omF-2VhJWnO1VCaoz2n8fLMrs&v=3";
+      script.async = true;
+      
+      document.body.appendChild(script);
+
+      setTimeout(this.initMap, 300)
+     
+  }
+    
+
+
 
       // document.querySelector('body').addEventListener('load', this.initMap())
     
-      // console.log(this.componentDidMount())
+       
     
-}
 
-initMap = () => {
-    const google = window.google || {};
-    // google.maps = google.map || {};
-    new google.maps.Map(document.getElementById('map'), {
-      center: {lat:51.434571, lng: 21.316791},
-      zoom: 13
-    })        
+ initMap = () => {
+  const google = window.google || {};
+  // google.maps = google.map || {};
+  this.map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat:51.434571, lng: 21.316791},
+    zoom: 14
+  })        
 }
 
         
