@@ -51,3 +51,7 @@ button {
     width: 200px;
     padding: 10px;
 }
+.weather p {
+  font-size: xx-small;
+  margin: 0;
+}
