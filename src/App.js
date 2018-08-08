@@ -44,7 +44,7 @@ class App extends Component {
       // fetch('https://newsapi.org/v2/top-headlines?country=pl&apiKey=ac6d8147786d47dfa539427ea3f24b65')
       //   .then((res) => res.json())
       //   .then((data) => console.log(data))
-      // this.initMap()
+      this.initMap()
 
       // fetch('https://andruxnet-world-cities-v1.p.mashape.com/?query=rad&searchby=city', {
       //   headers: {
@@ -77,7 +77,8 @@ class App extends Component {
   let marker = new google.maps.Marker({
     position: pawel,
     map: this.map,
-    animation: google.maps.Animation.DROP,
+    
+    animation: google.maps.Animation.BOUNCE,
     title:'Jedlnia-Letnisko'
   }) 
   let infoWindow = new google.maps.InfoWindow({
