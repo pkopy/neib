@@ -8,15 +8,16 @@ class App extends Component {
   state={
     init:false,
     markers:[],
+    map:'',
     temp:'',
     icon:'',
     content:'',
     locations: [
       {title:'Radomska 60', location: {lat:51.432822, lng:21.320922}, direction:'Radom'},
       {title:'Radomska 69', location: {lat:51.432921, lng:21.318971}, direction:'Jedlnia-Letnisko'},
-      {title:'Siczki', location: {lat:51.432921, lng:21.318971}, direction:'Radom'},
+      {title:'Siczki', location: {lat:51.437613, lng:21.30547}, direction:'Radom'},
       {title:'Radomska 32', location: {lat:51.432071, lng:21.326588}, direction:'Radom'},
-      {title:'Plac Piłsudskiego', location: {lat:51.430069, lng:21.327622}, direction:'Radom'},
+      {title:'Piłsudski Square', location: {lat:51.430069, lng:21.327622}, direction:'Radom'},
       {title:'Pawel`s home', location: {lat:51.434571, lng: 21.316791}},
       {title:'Monument to the victims of the Nazi occupation', location: {lat:51.430406, lng: 21.32743}},
 
@@ -67,32 +68,56 @@ class App extends Component {
     
 
  initMap = () => {
+  //  let markers = this.state.markers
   const google = window.google || {};
   // google.maps = google.map || {};
   this.map = new google.maps.Map(document.getElementById('map'), {
     center: {lat:51.434571, lng: 21.316791},
     zoom: 14
   })   
-  let pawel =   {lat:51.434571, lng: 21.316791};
-  let marker = new google.maps.Marker({
-    position: pawel,
-    map: this.map,
-    
-    animation: google.maps.Animation.BOUNCE,
-    title:'Jedlnia-Letnisko'
-  }) 
-  let infoWindow = new google.maps.InfoWindow({
-    content: "Tralala ldsasjfsa"
-  }) 
-  marker.addListener('click', () => {
-    infoWindow.open(this.map, marker)
-  })
-  // console.log(marker) 
+  this.setState({map:this.map})
+  // let pawel =   {lat:51.434571, lng: 21.316791};
+  for(let location of this.state.locations){
+    console.log(location)
+    let marker = new google.maps.Marker({
+      position: location.location,
+      map: this.map,
+      
+      animation: google.maps.Animation.DROP,
+      title:location.title,
+      
+    }) 
+    this.state.markers.push(marker)
+
+  }
+  
+  for(let marker of this.state.markers) {
+    marker.setMap(this.state.map)
+      marker.addListener('click', () => {
+        this.showListing(marker)
+      })
+  }
+  // let infoWindow = new google.maps.InfoWindow({
+  //   content: "Tralala ldsasjfsa"
+  // }) 
+  console.log(this.state.markers) 
 }
 
+showListing = (marker) => {
+  if(marker.map !== null){
+    marker.setMap(null)
+    // console.log(marker.map)
+  }else{
+    marker.setMap(this.state.map)
+  }
+}
         
 test = () => {
-    console.log(this.state)
+   for(let marker of this.state.markers){
+     this.showListing(marker)
+
+   } 
+  // console.log(this.state.markers[0])
     
     
 }
