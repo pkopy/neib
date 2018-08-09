@@ -9,6 +9,7 @@ class App extends Component {
   state={
     init:false,
     markers:[],
+    actualMarkers:[],
     map:'',
     temp:'',
     icon:'',
@@ -96,8 +97,9 @@ class App extends Component {
     }) 
     this.state.markers.push(marker);
     bounds.extend(marker.position)
-    console.log(marker)
+    // console.log(marker)
   }
+  this.state.actualMarkers = this.state.markers;
 
   this.setState({bounds: bounds})
 
@@ -130,29 +132,35 @@ show = (marker, type, bounds) => {
   if(marker.type === type) {
     marker.setMap(this.state.map)
     bounds.extend(marker.position)
+    this.state.actualMarkers.push(marker)
   }else{
     marker.setMap(null)
   }
+  
 }
         
 buses = () => {
   const google = window.google || {};
   let bounds = new google.maps.LatLngBounds();
+  this.state.actualMarkers= [];
   for(let marker of this.state.markers){
     this.show(marker, 'bus stop', bounds)
   } 
-  this.state.map.fitBounds(bounds)   
+  this.state.map.fitBounds(bounds)  
+  console.log(this.state.actualMarkers) 
 }
 
 places = () => {
   const google = window.google || {};
   let bounds = new google.maps.LatLngBounds();
+  this.state.actualMarkers= [];
   console.log(bounds)
   for(let marker of this.state.markers){
     this.show(marker, 'place', bounds)
     
   }   
     this.state.map.fitBounds(bounds)
+    console.log(this.state.actualMarkers)
 }
 
 changeTitle = (mark) => {
@@ -162,7 +170,7 @@ changeTitle = (mark) => {
       
       marker.icon = logo;
       marker.setMap(this.state.map)
-      console.log(marker)
+      // console.log(marker)
       return
     }
 
@@ -177,7 +185,7 @@ defaultIcon = (mark) => {
 
         marker.icon = '';
         marker.setMap(this.state.map)
-        console.log(marker)
+        // console.log(marker)
 
       
       return
@@ -215,7 +223,7 @@ defaultIcon = (mark) => {
         <Main
           defaultIcon={this.defaultIcon}
           changeTitle={this.changeTitle}
-          markers={this.state.markers}
+          markers={this.state.actualMarkers}
         />
         
       </div>
