@@ -6,17 +6,32 @@ class Main extends Component {
      
     }
     
-    
+    show =(mark) => {
+        this.props.changeTitle(mark, 'TeSTTTTTTTTTTTT')
+        // console.log(mark.id)
+        // for(let marker of this.props.markers){
+        //     if(mark.id === marker.id){
+        //         marker.title = true;
+        //         this.setState
+        //     }
+        // }
+    }
 
     render () {
-         const { start, init } = this.props
+         const { markers } = this.props
         
         return (
             <div>
-                <div   id="map" onClick={()=>init()}></div>
-                
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxMhKai2omF-2VhJWnO1VCaoz2n8fLMrs&v=3&callback=initMap">
-                </script>
+                <ol style={{position: 'absolute'}}>
+                    {markers.map((marker) =>
+                        <li key={marker.id} id={`marker:${marker.id}`}>
+                            <div onMouseOver={() => this.props.changeTitle(marker)} onMouseOut={()=>this.props.defaultIcon(marker)}>
+                                {marker.title}
+                            </div>
+
+                        </li> 
+                    )}
+                </ol>
             </div>
             
         )

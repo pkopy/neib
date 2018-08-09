@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Weather from './Weather'
-
+import Main from './Main'
+import logo from './icona.png'
 
 class App extends Component {
 
@@ -77,23 +78,25 @@ class App extends Component {
   // google.maps = google.map || {};
   this.map = new google.maps.Map(document.getElementById('map'), {
     center: {lat:51.434571, lng: 21.316791},
-    zoom: 14
+    zoom: 14,
+    mapTypeControl: false,
   })   
   this.setState({map:this.map})
   // let pawel =   {lat:51.434571, lng: 21.316791};
-  for(let location of this.state.locations){
+  for(let i = 0; i < this.state.locations.length; i++){
     // console.log(location)
     let marker = new google.maps.Marker({
-      position: location.location,
+      position: this.state.locations[i].location,
       map: this.map,
       animation: google.maps.Animation.DROP,
-      title:`${location.type.toUpperCase()}\n${location.title}`,
-      type: location.type,
-      
+      title:`${this.state.locations[i].type.toUpperCase()}\n${this.state.locations[i].title}`,
+      type: this.state.locations[i].type,
+      id: i,
+      icon: ''
     }) 
     this.state.markers.push(marker);
     bounds.extend(marker.position)
-
+    console.log(marker)
   }
 
   this.setState({bounds: bounds})
@@ -152,6 +155,39 @@ places = () => {
     this.state.map.fitBounds(bounds)
 }
 
+changeTitle = (mark) => {
+  // let image = logo;
+  for(let marker of this.state.markers){
+    if(mark.id === marker.id){
+      
+      marker.icon = logo;
+      marker.setMap(this.state.map)
+      console.log(marker)
+      return
+    }
+
+  }
+}
+defaultIcon = (mark) => {
+  // let image = logo;
+  for(let marker of this.state.markers){
+    if(mark.id === marker.id){
+      
+      
+
+        marker.icon = '';
+        marker.setMap(this.state.map)
+        console.log(marker)
+
+      
+      return
+    }
+
+  }
+}
+
+
+
 
   render() {
     const { temp, icon } = this.state
@@ -175,7 +211,12 @@ places = () => {
           icon={icon}
           temp={temp}
         />
-        
+
+        <Main
+          defaultIcon={this.defaultIcon}
+          changeTitle={this.changeTitle}
+          markers={this.state.markers}
+        />
         
       </div>
     );
