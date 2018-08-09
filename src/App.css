@@ -1,3 +1,6 @@
+body {
+  overflow: hidden;
+}
 .App {
   text-align: center;
 }
@@ -9,9 +12,10 @@
 
 .App-header {
   background-color: #222;
-  height: 100px;
-  padding: 20px;
+  height: 130px;
+  padding: 20px 0 0;
   color: white;
+  box-sizing: border-box;
 }
 
 .App-title {
@@ -30,7 +34,7 @@
 #map {
   bottom:0px;
   height: 100%;
-  top:100px;
+  top:130px;
   left: 0;
   position: absolute;
   right: 0;
@@ -47,11 +51,25 @@ button {
   font-weight: bold;
   font-size: 2em;
   background-color: #80808040;
-    border-radius: 15px;
-    width: 200px;
-    padding: 10px;
+  border-radius: 15px;
+  width: 200px;
+  padding: 10px;
 }
 .weather p {
   font-size: xx-small;
   margin: 0;
+}
+
+.search-bar {
+  height: 50px;
+  padding: 15px;
+  text-align: left;
+  border-top: 1px solid #504e4e;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.category {
+  border-right: 1px solid;
+  width: 120px;
 }
